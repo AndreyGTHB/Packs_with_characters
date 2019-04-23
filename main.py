@@ -19,7 +19,7 @@ while not run:
         command = input()
 while True:
     if command == "команды":
-        print(" персонажи \n бой \n открыть_пак \n открыть_большой_пак \n открыть_мега-пак")
+        print(" персонажи \n бой \n открыть_пак \n открыть_большой_пак \n открыть")
     elif command == "персонажи":
         print(characters)
     else:
