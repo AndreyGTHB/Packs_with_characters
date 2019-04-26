@@ -1,8 +1,8 @@
 from time import sleep
 from random import randint
 
-name = input("Как тебя зовут?")
-sleep(1)
+# name = input("Как тебя зовут?")
+# sleep(1)
 
 
 def print_arr(arr):
@@ -25,26 +25,47 @@ class Character:
                + str(self.damage)
 
 
-def open_pack(size, name):
-    probability = randint(1, 100)
-    coins = 0
-    points_forces = []
-    character = {}
-    if probability in range(1, 78):
-        coins = randint(25 * size, 50 * size)
-        points_forces = [randint(10 * size, 19 * size), randint(10 * size, 19 * size)]
-    elif probability in range(79, 87):
-        character = Character(name, "Редкий", 200)
-    elif probability in range(88, 93):
-        character = Character(name, "Сверхредкий", 320)
-    elif probability in range(94, 97):
-        character = Character(name, "Эпический", 450)
-    elif probability in range(98, 99):
-        character = Character(name, "Мифический", 600)
-    else:
-        character = Character(name, "Легендарный", 900)
-    return [coins, points_forces, character]
+class Pack:
+    def __init__(self, size):
+        self.size = size
 
+    def open(self):
+        coins = 0
+        points_forces = []
+        character = {}
+        prize = {
+            "Монеты": 0
+            "Очки_силы":[]
+        }
+        for n in range(3):
+            probability = randint(1, 100)
+            if probability in range(1, 78):
+                if randint(0, 1) == 0:
+                    coins = randint(25 * self.size, 50 * self.size)
+                    prize[](coins)
+                    
+                else:
+                    points_forces = randint(10 * self.size, 19 * self.size)
+                    prize.append(points_forces)
+            elif probability in range(79, 87):
+                character = Character(input("Вам выпал Редкий персонаж. Придумайте ему имя!"), "Редкий", 200)
+                prize.append(character)
+            elif probability in range(88, 93):
+                character = Character(input("Вам выпал Сверхредкий персонаж. Придумайте ему имя!"), "Сверхредкий", 320)
+                prize.append(character)
+            elif probability in range(94, 97):
+                character = Character(input("Вам выпал Эпический персонаж. Придумайте ему имя!"), "Эпический", 500)
+                prize.append(character)
+            elif probability in range(98, 99):
+                character = Character(input("Вам выпал Мифический персонаж. Придумайте ему имя!"), "Мифический", 685)
+                prize.append(character)
+            else:
+                character = Character(input("Вам выпал Легендарный персонаж. Придумайте ему имя!"), "Легендарный", 900)
+                prize.append(character)
+        return prize
+
+pack = Pack(5)
+print_arr(pack.open())
 
 print("Напиши 'начать_игру'")
 run = False
